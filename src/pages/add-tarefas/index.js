@@ -97,9 +97,6 @@ export default function addTarefas({navigation}) {
     
   };
 
-
-
-
   const [horaInserir, setHoraInserir] = useState('');
   const [showHora, setShowHora] = useState(false); 
 
