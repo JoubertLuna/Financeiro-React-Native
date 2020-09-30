@@ -8,8 +8,23 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Home({navigation}) {
 
-    const [dados, setDados] = useState([]);
+  const [dados, setDados] = useState([]);
 
+  const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('@storage_Key')
+        if(value !== null) {
+          setDados(JSON.parse(value));
+        }
+      } catch(e) {
+        // error reading value
+      }
+    }
+
+    useEffect(()=> {
+      getData();
+    },[])
+   
       return (
         <SafeAreaView>
         <View 
@@ -19,7 +34,7 @@ export default function Home({navigation}) {
          style={{width:30, height:30}}
          resizeMode = "contain"
          />
-        <Text style={{color:'#FFF', fontSize:17}}>Aplicativo de Tarefas</Text>
+        <Text style={{color:'#FFF', fontSize:17}}>{dados.nome}</Text>
         <TouchableOpacity
         onPress={() => navigation.navigate('Login')}
         >
@@ -37,7 +52,7 @@ export default function Home({navigation}) {
     
     const styles = StyleSheet.create({
       header:{
-          backgroundColor:'#000',
+          backgroundColor:'#3CB371',
           flexDirection:'row',
           alignItems:'center',
           justifyContent:'space-between',

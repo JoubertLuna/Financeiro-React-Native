@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View } from 'react-native';
 
-export default function Clientes() {
+export default function Usuarios() {
     return (
         <View style={styles.container}>
-            <Text>Clientes</Text>
+            <Text>Usuarios</Text>
         </View>
     );
 }

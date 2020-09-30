@@ -3,20 +3,21 @@ import { StyleSheet, Button, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import Home from './src/pages/Home';
 import Tarefas from './src/pages/Tarefas';
-import Clientes from './src/pages/Clientes';
+import Usuarios from './src/pages/Usuarios';
 import Login from './src/pages/Login';
+import addTarefas from './src/pages/add-tarefas';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
   return (
-   
-      <Tab.Navigator
+
+    <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -27,7 +28,7 @@ function Tabs() {
               : 'ios-home';
           } else if (route.name === 'Tarefas') {
             iconName = focused ? 'ios-list-box' : 'ios-list';
-          }else if (route.name === 'Clientes') {
+          } else if (route.name === 'Usuarios') {
             iconName = focused ? 'ios-people' : 'ios-people';
           }
 
@@ -39,13 +40,12 @@ function Tabs() {
         activeTintColor: '#3f64c7',
         inactiveTintColor: 'gray',
       }}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Tarefas" component={Tarefas} />
-        <Tab.Screen name="Clientes" component={Clientes} />
-        
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Tarefas" component={Tarefas} />
+      <Tab.Screen name="Usuarios" component={Usuarios} />
 
-      </Tab.Navigator>
+    </Tab.Navigator>
 
 
   );
@@ -53,39 +53,51 @@ function Tabs() {
 
 export default function App() {
 
-  
   return (
-    
+
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen 
-        name="Home" 
-        component={Tabs}
-        options={{headerShown: false}}
+        <Stack.Screen
+          name="Home"
+          component={Tabs}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen 
-        name="Tarefas" 
-        component={Tarefas} 
-        options={{headerShown: false}}
-        
+        <Stack.Screen
+          name="Tarefas"
+          component={Tarefas}
+          options={{ headerShown: false }}
+
         />
 
-        <Stack.Screen 
-        name="Clientes" 
-        component={Clientes} 
-        options={{headerShown: false}}
-        
+        <Stack.Screen
+          name="Usuarios"
+          component={Usuarios}
+          options={{ headerShown: false }}
+
         />
 
-        <Stack.Screen 
-      name="Login" 
-      component={Login} 
-      options={{headerShown: false}}
-       />
-        
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="addTarefas"
+          component={addTarefas}
+          options={{
+            title: 'Inserir Tarefa',
+            headerStyle: {
+              backgroundColor: '#00335c'
+            },
+            headerTintColor: '#FFF'
+          }}
+
+        />
+
       </Stack.Navigator>
 
-     
+
     </NavigationContainer>
   );
 }

@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Login({ navigation }) {
 
-  const api = 'http://projoubert.tech/apitarefas/';
+  const api = 'http://192.168.1.10:8090/apitarefas/';
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
