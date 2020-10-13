@@ -17,7 +17,6 @@ function PuxarEsquerda(progress, eixoX){
     )
 }
 
-
 function PuxarDireita({progress, eixoX, onPress}){
     const scale = eixoX.interpolate({
         inputRange:[-100, 0],

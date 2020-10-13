@@ -52,7 +52,7 @@ export default function Home({navigation}) {
     
     const styles = StyleSheet.create({
       header:{
-          backgroundColor:'#3CB371',
+          backgroundColor:'#000',
           flexDirection:'row',
           alignItems:'center',
           justifyContent:'space-between',

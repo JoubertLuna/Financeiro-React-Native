@@ -162,7 +162,7 @@ export default function addTarefas({navigation}) {
          
           if(res.data.success === true){
             //mensagemSalvar();
-            navigation.navigate('Tarefas')
+            navigation.navigate('Tarefas');
             
           }
     
@@ -228,11 +228,8 @@ export default function addTarefas({navigation}) {
                       
       
       </TouchableOpacity>
-
       
 </View>
-
-
 
 {show && (
         <DateTimePicker
@@ -259,8 +256,7 @@ export default function addTarefas({navigation}) {
           onChange={onChangeHora}
         />
       )}
-
-      
+  
       <TouchableOpacity  
       style={styles.botaoModal}
       onPress={add}
@@ -270,7 +266,6 @@ export default function addTarefas({navigation}) {
        
 
         </Animatable.View>
-
        
     </View>
   );
