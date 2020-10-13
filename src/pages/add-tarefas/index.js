@@ -278,10 +278,8 @@ const styles = StyleSheet.create({
         marginTop:15,
       },
     
-      textoModal:{
-        
+      textoModal:{ 
         color: '#FFF',
-        
         marginLeft: 15,
         fontSize:16,
 
@@ -296,7 +294,7 @@ const styles = StyleSheet.create({
         fontSize:13
       },
       botaoModal:{
-        backgroundColor: '#3CB371',
+        backgroundColor: '#0000CD',
         borderRadius: 5,
         margin: 5,
         padding: 12,

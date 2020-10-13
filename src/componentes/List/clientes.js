@@ -26,7 +26,7 @@ function PuxarDireita({progress, eixoX, onPress}){
     return(
         <TouchableOpacity onPress={onPress}>
         <View style={styles.editar}>
-            <Animated.Text style={[styles.textoList, {transform:[{scale}]}]}>Concluir</Animated.Text>
+            <Animated.Text style={[styles.textoList, {transform:[{scale}]}]}>Editar</Animated.Text>
         </View>
         </TouchableOpacity>
     )
@@ -42,15 +42,15 @@ export default function ListItem({data, deletar, editar}) {
     <View style={styles.container}>
       
       <View style={styles.titulo}>
-      <FontAwesome style={styles.icone} name="check-square" size={20} color={data.cor}></FontAwesome>
-      <Text style={styles.texto}>{data.titulo}</Text>
+      
+      <Text style={styles.texto}>{data.nome}  </Text>
       
       </View>
       <View style={styles.subtitulo}>
-      <Text style={styles.textoSub}>{data.data} - </Text>
-      <Text style={styles.textoSub}>{data.hora}</Text>
+      <Text style={styles.textoSub}>{data.telefone} - </Text>
+      <Text style={styles.textoSub}>{data.endereco}</Text>
       </View>
-           
+          
     </View>
     </Swipeable>
   );
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#FFF',
         paddingHorizontal:10,
-        paddingVertical:15,
+        paddingVertical:12,
 
     },
 
     texto:{
-        color:'#222',
+        color:'#4d4d4d',
         fontSize:17,
        
     },
@@ -76,10 +76,9 @@ const styles = StyleSheet.create({
        
     },
     editar:{
-        backgroundColor:'#066720',
+        backgroundColor:'#31549f',
         justifyContent:'center',
-        flex:1
-        
+               
     },
     textoList:{
         color:'#FFF',
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     subtitulo:{
         flexDirection:'row',
         marginTop:4,
-        
+
     },
 
     icone:{
@@ -102,4 +101,3 @@ const styles = StyleSheet.create({
         marginTop:2
     }
 });
-

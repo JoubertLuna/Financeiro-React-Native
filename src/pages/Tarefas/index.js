@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 
-
 export default function Home({navigation}) {
  
     const api = 'http://192.168.1.10:8090/apitarefas/';
@@ -245,7 +244,6 @@ export default function Home({navigation}) {
           alignItems:'center',
           justifyContent:'space-between',
           padding:10,
-          
           marginTop:35
       },
 
