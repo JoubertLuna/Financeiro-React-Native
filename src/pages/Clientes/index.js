@@ -13,19 +13,16 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 
 
-export default function Usuarios({navigation}) {
-
+export default function Clientes({navigation}) {
    
-    const api = 'http://192.168.1.10:8090/apitarefas/';
+  const api = 'http://192.168.1.10:8090/apitarefas/';
 
-  
   const [valor, setValor] = useState('1');
   const [lista, setLista] = useState([]);
   const [buscar, setBuscar] = useState('');
 
     const [dados, setDados] = useState([]);
     
-
     const getData = async () => {
        
         try {
@@ -57,7 +54,7 @@ export default function Usuarios({navigation}) {
             }
             setValor('2');
         }
-              
+         
         //console.log(res.data.result);
        
       }
@@ -78,7 +75,7 @@ export default function Usuarios({navigation}) {
         const res = await Axios.get(api + 'listarClientes.php?busca=' + buscar + '&cpf=' + dados.cpf);
        
         setLista(res.data.result);
-           
+      
       }
 
       function mensagemDelete(id){
@@ -95,10 +92,10 @@ export default function Usuarios({navigation}) {
             { text: "Sim", onPress: () => deletar(id) }
           ],
           { cancelable: true }
-        );       
+        );
     
       }
-
+    
      async function deletar(id){
          
         const res = await Axios.get(api + 'excluirClientes.php?id=' + id);
@@ -118,7 +115,7 @@ export default function Usuarios({navigation}) {
          resizeMode = "contain"
          />
          </TouchableOpacity>
-        <Text style={{color:'#FFF', fontSize:17}}>Lista de Usuários</Text>
+        <Text style={{color:'#FFF', fontSize:17}}>Lista de Clientes</Text>
         <TouchableOpacity
         onPress={ () => navigation.navigate('addClientes')}
         >
@@ -126,7 +123,7 @@ export default function Usuarios({navigation}) {
      
          </TouchableOpacity>
         </View>
-
+    
         <View style={styles.viewSearch}>
               <TextInput
                 style={styles.input}
@@ -152,7 +149,7 @@ export default function Usuarios({navigation}) {
             />
             )}
             ItemSeparatorComponent={()=><Separator/>}
-            
+
         >
 
         </FlatList>
@@ -195,7 +192,7 @@ export default function Usuarios({navigation}) {
         right: 0,
         top: 15,
       },
-     
+
     });
 
     const Separator = () => <View style={{flex:1, height:1, backgroundColor:'#DDD'}}></View>

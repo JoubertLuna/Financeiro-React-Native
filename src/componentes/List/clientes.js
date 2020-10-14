@@ -50,7 +50,7 @@ export default function ListItem({data, deletar, editar}) {
       <Text style={styles.textoSub}>{data.telefone} - </Text>
       <Text style={styles.textoSub}>{data.endereco}</Text>
       </View>
-          
+           
     </View>
     </Swipeable>
   );
@@ -61,13 +61,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF',
         paddingHorizontal:10,
         paddingVertical:12,
-
     },
 
     texto:{
         color:'#4d4d4d',
-        fontSize:17,
-       
+        fontSize:17,   
     },
     deletar:{
         backgroundColor:'#d62525',
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
     editar:{
         backgroundColor:'#31549f',
         justifyContent:'center',
-               
+       
     },
     textoList:{
         color:'#FFF',
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     subtitulo:{
         flexDirection:'row',
         marginTop:4,
-
+        
     },
 
     icone:{

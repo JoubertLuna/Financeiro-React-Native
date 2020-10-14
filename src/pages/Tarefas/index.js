@@ -6,15 +6,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity, FlatList, TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Ionicons} from '@expo/vector-icons';
-import ListItem from '../../componentes/List/index';
+import ListItem from '../../componentes/List/tarefas';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 
 export default function Home({navigation}) {
- 
-    const api = 'http://192.168.1.10:8090/apitarefas/';
+
+   
+  const api = 'http://192.168.1.10:8090/apitarefas/';
 
   const [strDate, setStrDate] = useState('SELECIONE UMA DATA');
     
@@ -111,7 +112,8 @@ export default function Home({navigation}) {
                 alert('Não encontramos registros!')
             }
             setValor('2');
-        } 
+        }
+        
         //console.log(res.data.result);
        
       }
@@ -130,8 +132,8 @@ export default function Home({navigation}) {
             setLista(res.data.result);
         }else{
             alert('Não encontramos registros!')
-        }       
-        
+        }
+                
       }
 
       function mensagemDelete(id){
@@ -149,7 +151,7 @@ export default function Home({navigation}) {
           ],
           { cancelable: true }
         );
-       
+    
       }
     
      async function deletar(id){
@@ -164,7 +166,6 @@ export default function Home({navigation}) {
         listarDados();
       }
 
-   
       return (
         <SafeAreaView>
         <View 
@@ -197,9 +198,8 @@ export default function Home({navigation}) {
         <Text>{strDate}</Text>
         <Icon name="search" color="#000" size={25} />
               
-      
       </TouchableOpacity>
-           
+            
       {show && (
         <DateTimePicker
           locale="pt-br"
@@ -231,7 +231,7 @@ export default function Home({navigation}) {
 
         </FlatList>
     </View>
-   
+    
         </SafeAreaView>
 
       );
@@ -244,6 +244,7 @@ export default function Home({navigation}) {
           alignItems:'center',
           justifyContent:'space-between',
           padding:10,
+          
           marginTop:35
       },
 
@@ -255,7 +256,7 @@ export default function Home({navigation}) {
         padding:10,
        
     },
-     
+  
     });
 
     const Separator = () => <View style={{flex:1, height:1, backgroundColor:'#DDD'}}></View>

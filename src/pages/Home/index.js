@@ -8,23 +8,23 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Home({navigation}) {
 
-  const [dados, setDados] = useState([]);
+    const [dados, setDados] = useState([]);
 
-  const getData = async () => {
-      try {
-        const value = await AsyncStorage.getItem('@storage_Key')
-        if(value !== null) {
-          setDados(JSON.parse(value));
+    const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('@storage_Key')
+          if(value !== null) {
+            setDados(JSON.parse(value));
+          }
+        } catch(e) {
+          // error reading value
         }
-      } catch(e) {
-        // error reading value
       }
-    }
 
-    useEffect(()=> {
-      getData();
-    },[])
-   
+      useEffect(()=> {
+        getData();
+      },[])
+
       return (
         <SafeAreaView>
         <View 
@@ -45,7 +45,7 @@ export default function Home({navigation}) {
              />
          </TouchableOpacity>
         </View>
-        
+    
         </SafeAreaView>
       );
     }

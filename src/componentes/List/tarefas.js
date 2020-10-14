@@ -43,14 +43,14 @@ export default function ListItem({data, deletar, editar}) {
       
       <View style={styles.titulo}>
       <FontAwesome style={styles.icone} name="check-square" size={20} color={data.cor}></FontAwesome>
-      <Text style={styles.texto}>{data.titulo}</Text>
+      <Text style={styles.texto}>{data.titulo}  </Text>
       
       </View>
       <View style={styles.subtitulo}>
       <Text style={styles.textoSub}>{data.data} - </Text>
       <Text style={styles.textoSub}>{data.hora}</Text>
       </View>
-           
+         
     </View>
     </Swipeable>
   );
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#FFF',
         paddingHorizontal:10,
-        paddingVertical:15,
+        paddingVertical:12,
 
     },
 
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     editar:{
         backgroundColor:'#066720',
         justifyContent:'center',
-        flex:1
         
+       
     },
     textoList:{
         color:'#FFF',

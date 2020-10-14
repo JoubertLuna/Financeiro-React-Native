@@ -12,7 +12,7 @@ import Axios from 'axios';
 
 export default function addTarefas({navigation}) {
 
-    const api = 'http://192.168.1.10:8090/apitarefas/';
+  const api = 'http://192.168.1.10:8090/apitarefas/';
 
     const [strData, setStrData] = useState('DATA TAREFA');
     const [strHora, setStrHora] = useState('HORA TAREFA');
@@ -38,16 +38,12 @@ export default function addTarefas({navigation}) {
       useEffect(()=> {
         getData();
       },[])
-
-
-
-      
+   
   const [date, setDate] = useState(new Date());
   const [dataInserir, setDataInserir] = useState('');
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
-  
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -58,8 +54,6 @@ export default function addTarefas({navigation}) {
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1;
     var year = currentDate.getFullYear();
-
-
 
     var formatterDay;	
     if (day < 10) {
@@ -110,14 +104,12 @@ export default function addTarefas({navigation}) {
     var hors = currentDate.getHours();
     var minut = currentDate.getMinutes();
 
-    
     if (hors < 10) {
         hors = '0'+ hors;
     } else {
         hors = hors;
     }
 		
-    
     if (minut < 10) {
         minut = '0'+ minut;
     } else {
@@ -141,7 +133,6 @@ export default function addTarefas({navigation}) {
     
   };
 
-  
   const mensagemDuplicidade = () =>
   Alert.alert(
     "Erro ao Salvar",
@@ -162,7 +153,7 @@ export default function addTarefas({navigation}) {
          
           if(res.data.success === true){
             //mensagemSalvar();
-            navigation.navigate('Tarefas');
+            navigation.navigate('Tarefas')
             
           }
     
@@ -182,13 +173,11 @@ export default function addTarefas({navigation}) {
 
   return (
     <View style={styles.modal}>
-      
-         
+        
         <Animatable.View  
           animation="bounceInUp"
         useNativeDriver  >
-
-        
+  
         <TextInput 
         type="text"
       style={styles.input}
@@ -214,21 +203,18 @@ export default function addTarefas({navigation}) {
         <FontAwesome name="calendar" color="#000" size={17} />
         <Text> {strData}</Text>
                       
-      
       </TouchableOpacity>
       
-
       <TouchableOpacity
     style={styles.areaHora}
     onPress={showDatepickerHora}
     >  
         
         <MaterialIcons name="access-time" color="#000" size={17} />
-        <Text>{strHora}</Text>
-                      
-      
+        <Text> {strHora}</Text>
+                        
       </TouchableOpacity>
-      
+  
 </View>
 
 {show && (
@@ -256,7 +242,7 @@ export default function addTarefas({navigation}) {
           onChange={onChangeHora}
         />
       )}
-  
+   
       <TouchableOpacity  
       style={styles.botaoModal}
       onPress={add}
@@ -278,13 +264,15 @@ const styles = StyleSheet.create({
         marginTop:15,
       },
     
-      textoModal:{ 
+      textoModal:{
+        
         color: '#FFF',
+        
         marginLeft: 15,
         fontSize:16,
-
+             
       },
-    
+     
       input:{
         backgroundColor: '#FFF',
         borderRadius: 5,
@@ -294,7 +282,7 @@ const styles = StyleSheet.create({
         fontSize:13
       },
       botaoModal:{
-        backgroundColor: '#0000CD',
+        backgroundColor: '#00335c',
         borderRadius: 5,
         margin: 5,
         padding: 12,
