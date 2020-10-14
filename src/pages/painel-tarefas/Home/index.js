@@ -30,7 +30,7 @@ export default function Home({navigation}) {
         <View 
         style={styles.header}>
          <Image 
-         source={require('../../../assets/img/doka02.png')}
+         source={require('../../../../assets/img/doka02.png')}
          style={{width:30, height:30}}
          resizeMode = "contain"
          />
@@ -39,7 +39,7 @@ export default function Home({navigation}) {
         onPress={() => navigation.navigate('Login')}
         >
             <Image 
-         source={require('../../../assets/img/logout3.png')}
+         source={require('../../../../assets/img/logout3.png')}
          style={{width:30, height:30}}
          resizeMode = "contain"
              />

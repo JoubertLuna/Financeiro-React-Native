@@ -44,8 +44,18 @@ export default function Login({navigation}) {
        
         //alert(res.data.obj.nivel);
         storeData(res.data.obj);
-        navigation.navigate('Home', {nome: res.data.obj.nome});
+
+        if (res.data.obj.nivel == 'user') {
+
+          navigation.navigate('Home', {nome: res.data.obj.nome});
         
+        }
+
+        if (res.data.obj.nivel == 'tesoureiro') {
+
+          navigation.navigate('Movimentacoes', {nome: res.data.obj.nome});
+        
+        }
         
       
     }else if(res.data.retorno === 'Dados incorretos!'){

@@ -4,17 +4,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from '@expo/vector-icons';
-import Home from './src/pages/Home';
-import Tarefas from './src/pages/Tarefas';
-import Clientes from './src/pages/Clientes';
+
+import Home from './src/pages/painel-tarefas/Home';
+import Tarefas from './src/pages/painel-tarefas/Tarefas';
+import Clientes from './src/pages/painel-tarefas/Clientes';
 import Login from './src/pages/Login';
-import addTarefas from './src/pages/add-tarefas';
-import addClientes from './src/pages/add-clientes';
+import addTarefas from './src/pages/painel-tarefas/add-tarefas';
+import addClientes from './src/pages/painel-tarefas/add-clientes';
+
+import Movimentacoes from './src/pages/painel-tesouraria/Home';
+import Pagar from './src/pages/painel-tesouraria/Pagar';
+import Receber from './src/pages/painel-tesouraria/Receber';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function Tabs() {
+function TabsTarefas() {
   return (
    
       <Tab.Navigator
@@ -50,6 +55,42 @@ function Tabs() {
   );
 }
 
+function TabsFinanceiro() {
+  return (
+   
+      <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Movimentacoes') {
+            iconName = focused
+              ? 'ios-cash'
+              : 'ios-cash';
+          } else if (route.name === 'Receber') {
+            iconName = focused ? 'ios-arrow-redo-circle' : 'ios-arrow-redo-circle';
+          }else if (route.name === 'Pagar') {
+            iconName = focused ? 'ios-arrow-undo-circle' : 'ios-arrow-undo-circle';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: '#3f64c7',
+        inactiveTintColor: 'gray',
+      }}
+      >
+        <Tab.Screen name="Movimentacoes" component={Movimentacoes} />
+        <Tab.Screen name="Receber" component={Receber} />
+        <Tab.Screen name="Pagar" component={Pagar} />
+       
+      </Tab.Navigator>
+
+  );
+}
+
 export default function App() {
   
   return (
@@ -58,7 +99,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
         name="Home" 
-        component={Tabs}
+        component={TabsTarefas}
         options={{headerShown: false}}
         />
         <Stack.Screen 
@@ -104,6 +145,26 @@ export default function App() {
           },
           headerTintColor:'#FFF'
         }}
+        
+        />
+
+      <Stack.Screen 
+        name="Movimentacoes" 
+        component={TabsFinanceiro}
+        options={{headerShown: false}}
+        />
+
+      <Stack.Screen 
+        name="Pagar" 
+        component={Pagar} 
+        options={{headerShown: false}}
+        
+        />
+
+      <Stack.Screen 
+        name="Receber" 
+        component={Receber} 
+        options={{headerShown: false}}
         
         />
         

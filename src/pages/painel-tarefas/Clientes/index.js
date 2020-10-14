@@ -6,82 +6,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity, FlatList, TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Ionicons} from '@expo/vector-icons';
-import ListItem from '../../componentes/List/tarefas';
+import ListItem from '../../../componentes/List/clientes';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 
-export default function Home({navigation}) {
-
+export default function Clientes({navigation}) {
    
   const api = 'http://192.168.1.10:8090/apitarefas/';
 
-  const [strDate, setStrDate] = useState('SELECIONE UMA DATA');
-    
-  const [date, setDate] = useState(new Date());
-  const [dataBuscar, setDataBuscar] = useState('');
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
-
   const [valor, setValor] = useState('1');
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    //setDate(currentDate);
-
-    //alert(currentDate.getMinutes());
-    
-    var day = currentDate.getDate();
-    var month = currentDate.getMonth() + 1;
-    var year = currentDate.getFullYear();
-
-    var formatterDay;	
-    if (day < 10) {
-        formatterDay = '0'+ day;
-    } else {
-        formatterDay = day;
-    }
-		
-    var formatterMonth;	
-    if (month < 10) {
-        formatterMonth = '0'+ month;
-    } else {
-        formatterMonth = month;
-    }
-
-    //DATA NO MODELO BRASILEIRO
-    var dateFormattedBra =  formatterDay +'/'+ formatterMonth +'/'+ year;
-    
-    //DATA NO MODELO AMERICANO
-    var dateFormatted =  year +'-'+ formatterMonth +'-'+ formatterDay;
-    
-    setDataBuscar(dateFormatted);
-    setStrDate(dateFormattedBra);
-    buscar(dateFormatted);
-    //alert(dateFormatted);
-  };
-
-  const showMode = currentMode => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-    
-  };
-
-  const showTimepicker = () => {
-    showMode('time');
-  };
-
-    const [lista, setLista] = useState([]);
+  const [lista, setLista] = useState([]);
+  const [buscar, setBuscar] = useState('');
 
     const [dados, setDados] = useState([]);
-    const aler = 'aaa';
-   
+    
     const getData = async () => {
        
         try {
@@ -105,7 +45,7 @@ export default function Home({navigation}) {
       async function listarDados(){
        
         if(dados.cpf != undefined){
-            const res = await Axios.get(api + 'listarTarefas.php?busca=' + dataBuscar + '&cpf=' + dados.cpf);
+            const res = await Axios.get(api + 'listarClientes.php?busca=' + buscar + '&cpf=' + dados.cpf);
             if(res.data.result != '0'){
                 setLista(res.data.result);
             }else{
@@ -113,7 +53,7 @@ export default function Home({navigation}) {
             }
             setValor('2');
         }
-        
+         
         //console.log(res.data.result);
        
       }
@@ -125,15 +65,16 @@ export default function Home({navigation}) {
         }
       }, 50);
 
-      async function buscar(busca){
+      function buscarDados(){
+        buscarNome();
+      }
+
+      async function buscarNome(){
         
-        const res = await Axios.get(api + 'listarTarefas.php?busca=' + busca + '&cpf=' + dados.cpf);
-        if(res.data.result != '0'){
-            setLista(res.data.result);
-        }else{
-            alert('Não encontramos registros!')
-        }
-                
+        const res = await Axios.get(api + 'listarClientes.php?busca=' + buscar + '&cpf=' + dados.cpf);
+       
+        setLista(res.data.result);
+      
       }
 
       function mensagemDelete(id){
@@ -156,13 +97,7 @@ export default function Home({navigation}) {
     
      async function deletar(id){
          
-        const res = await Axios.get(api + 'excluirTarefas.php?id=' + id);
-        listarDados();
-      }
-
-      async function concluir(id){
-         
-        const res = await Axios.get(api + 'concluirTarefa.php?id=' + id);
+        const res = await Axios.get(api + 'excluirClientes.php?id=' + id);
         listarDados();
       }
 
@@ -174,45 +109,32 @@ export default function Home({navigation}) {
         onPress={ () => navigation.navigate('Home')}
         >
          <Image 
-         source={require('../../../assets/img/doka02.png')}
+         source={require('../../../../assets/img/doka02.png')}
          style={{width:30, height:30}}
          resizeMode = "contain"
          />
          </TouchableOpacity>
-        <Text style={{color:'#FFF', fontSize:17}}>Lista de Tarefas</Text>
+        <Text style={{color:'#FFF', fontSize:17}}>Lista de Clientes</Text>
         <TouchableOpacity
-        onPress={ () => navigation.navigate('addTarefas')}
+        onPress={ () => navigation.navigate('addClientes')}
         >
             <Ionicons name="ios-add" size={35} color="#FFF"></Ionicons>
      
          </TouchableOpacity>
         </View>
     
-    <View>
-    <TouchableOpacity
-    style={styles.areaBusca}
-    onPress={showDatepicker}
-    >  
-        
-        <FontAwesome name="calendar" color="#000" size={20} />
-        <Text>{strDate}</Text>
-        <Icon name="search" color="#000" size={25} />
-              
-      </TouchableOpacity>
-            
-      {show && (
-        <DateTimePicker
-          locale="pt-br"
-          
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
-    </View>
+        <View style={styles.viewSearch}>
+              <TextInput
+                style={styles.input}
+                placeholder="Faça sua Busca"
+                value={buscar}
+                onChangeText={ (buscar) => setBuscar(buscar)}
+                onChange={buscarDados()}
+              />
+              <TouchableOpacity style={styles.icon}>
+                <Icon name="search" color="#000" size={25} />
+              </TouchableOpacity>
+            </View>
 
         <View>
         <FlatList
@@ -226,7 +148,7 @@ export default function Home({navigation}) {
             />
             )}
             ItemSeparatorComponent={()=><Separator/>}
-            
+
         >
 
         </FlatList>
@@ -248,17 +170,28 @@ export default function Home({navigation}) {
           marginTop:35
       },
 
-      areaBusca:{
-        backgroundColor:'#e1e1e1',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        padding:10,
-       
-    },
-  
+      viewSearch:{
+        marginTop: 10,
+        backgroundColor: '#FFF',
+        elevation: 8,
+        borderRadius: 5,
+        marginVertical: 10,
+        width: '95%',
+        flexDirection: 'row',
+        alignSelf: 'center'
+      },
+      input:{
+        width: '90%',
+        padding: 13,
+        paddingLeft: 20,
+        fontSize: 17,
+      },
+      icon:{
+        
+        right: 0,
+        top: 15,
+      },
+
     });
 
     const Separator = () => <View style={{flex:1, height:1, backgroundColor:'#DDD'}}></View>
-
-    
