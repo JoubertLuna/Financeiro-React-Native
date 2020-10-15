@@ -97,7 +97,6 @@ export default function Receber({ navigation }) {
 
   }
 
-
   async function buscar(busca) {
 
     const res = await Axios.get(api + 'listarTarefas.php?busca=' + busca);
