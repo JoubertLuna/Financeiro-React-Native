@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Home from './src/pages/painel-tarefas/Home';
 import Tarefas from './src/pages/painel-tarefas/Tarefas';
@@ -15,6 +16,7 @@ import addClientes from './src/pages/painel-tarefas/add-clientes';
 import Movimentacoes from './src/pages/painel-tesouraria/Home';
 import Pagar from './src/pages/painel-tesouraria/Pagar';
 import Receber from './src/pages/painel-tesouraria/Receber';
+import addReceber from './src/pages/painel-tesouraria/addReceber';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,16 +67,16 @@ function TabsFinanceiro() {
 
           if (route.name === 'Movimentacoes') {
             iconName = focused
-              ? 'ios-cash'
-              : 'ios-cash';
+              ? 'dollar-sign'
+              : 'dollar-sign';
           } else if (route.name === 'Receber') {
-            iconName = focused ? 'ios-arrow-redo-circle' : 'ios-arrow-redo-circle';
+            iconName = focused ? 'money-bill-alt' : 'money-bill-alt';
           } else if (route.name === 'Pagar') {
-            iconName = focused ? 'ios-arrow-undo-circle' : 'ios-arrow-undo-circle';
+            iconName = focused ? 'cash-register' : 'cash-register';
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
@@ -165,6 +167,19 @@ export default function App() {
           name="Receber"
           component={Receber}
           options={{ headerShown: false }}
+
+        />
+
+        <Stack.Screen
+          name="addReceber"
+          component={addReceber}
+          options={{
+            title: 'Contas a Receber',
+            headerStyle: {
+              backgroundColor: '#00335c'
+            },
+            headerTintColor: '#FFF'
+          }}
 
         />
 
