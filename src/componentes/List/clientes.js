@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { StyleSheet, Text, View, Button, Animated, TouchableOpacity } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';

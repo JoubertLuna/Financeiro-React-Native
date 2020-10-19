@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { Modal, StyleSheet, Button, Text, View, SafeAreaView, Image, Animated, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity, FlatList, TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -29,9 +27,6 @@ export default function Home({ navigation }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    //setDate(currentDate);
-
-    //alert(currentDate.getMinutes());
 
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1;
@@ -60,7 +55,7 @@ export default function Home({ navigation }) {
     setDataBuscar(dateFormatted);
     setStrDate(dateFormattedBra);
     buscar(dateFormatted);
-    //alert(dateFormatted);
+    
   };
 
   const showMode = currentMode => {
@@ -113,8 +108,6 @@ export default function Home({ navigation }) {
       }
       setValor('2');
     }
-
-    //console.log(res.data.result);
 
   }
 

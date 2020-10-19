@@ -1,15 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { Modal, StyleSheet, Button, Text, View, SafeAreaView, Image, Animated, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity, FlatList, TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import ListItem from '../../../componentes/List/clientes';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 
 export default function Clientes({ navigation }) {
@@ -39,7 +35,7 @@ export default function Clientes({ navigation }) {
 
     getData();
     listarDados();
-
+    
   }, [])
 
   async function listarDados() {
@@ -53,8 +49,6 @@ export default function Clientes({ navigation }) {
       }
       setValor('2');
     }
-
-    //console.log(res.data.result);
 
   }
 

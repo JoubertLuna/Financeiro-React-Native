@@ -46,9 +46,6 @@ export default function addReceber({ navigation }) {
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-        //setDate(currentDate);
-
-        //alert(currentDate.getMinutes());
 
         var day = currentDate.getDate();
         var month = currentDate.getMonth() + 1;
@@ -76,7 +73,6 @@ export default function addReceber({ navigation }) {
 
         setDataInserir(dateFormatted);
 
-        //alert(dateFormatted);
         setStrData(dateFormattedBra);
     };
 
@@ -98,7 +94,7 @@ export default function addReceber({ navigation }) {
         const res = await Axios.post(api + 'addReceber.php', obj);
 
         if (res.data.success === true) {
-            //mensagemSalvar();
+            
             navigation.navigate('Receber')
 
         }

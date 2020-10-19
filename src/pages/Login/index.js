@@ -36,13 +36,11 @@ export default function Login({ navigation }) {
     );
 
   async function logar() {
-    //navigation.navigate('Home');
     const obj = { email, senha };
     const res = await axios.post(api + 'login.php', obj);
 
     if (res.data.retorno === 'Dados corretos!') {
 
-      //alert(res.data.obj.nivel);
       storeData(res.data.obj);
 
       if (res.data.obj.nivel == 'user') {
@@ -141,7 +139,6 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    //backgroundColor: '#191919',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Animated, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as Animatable from 'react-native-animatable';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
@@ -47,9 +45,6 @@ export default function addTarefas({ navigation }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    //setDate(currentDate);
-
-    //alert(currentDate.getMinutes());
 
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1;
@@ -77,7 +72,6 @@ export default function addTarefas({ navigation }) {
 
     setDataInserir(dateFormatted);
 
-    //alert(dateFormatted);
     setStrData(dateFormattedBra);
   };
 
@@ -97,9 +91,6 @@ export default function addTarefas({ navigation }) {
   const onChangeHora = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowHora(Platform.OS === 'ios');
-    //setDate(currentDate);
-
-    //alert(currentDate.getMinutes());
 
     var hors = currentDate.getHours();
     var minut = currentDate.getMinutes();
@@ -152,7 +143,7 @@ export default function addTarefas({ navigation }) {
     const res = await Axios.post(api + 'addTarefas.php', obj);
 
     if (res.data.success === true) {
-      //mensagemSalvar();
+      
       navigation.navigate('Tarefas')
 
     }

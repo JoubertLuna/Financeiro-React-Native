@@ -27,10 +27,7 @@ export default function Receber({ navigation }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    //setDate(currentDate);
-
-    //alert(currentDate.getMinutes());
-
+    
     var day = currentDate.getDate();
     var month = currentDate.getMonth() + 1;
     var year = currentDate.getFullYear();
@@ -58,7 +55,7 @@ export default function Receber({ navigation }) {
     setDataBuscar(dateFormatted);
     setStrDate(dateFormattedBra);
     buscar(dateFormatted);
-    //alert(dateFormatted);
+    
   };
 
   const showMode = currentMode => {
@@ -85,7 +82,6 @@ export default function Receber({ navigation }) {
   }, [])
 
   async function listarDados() {
-
 
     const res = await Axios.get(api + 'listarReceber.php?busca=' + dataBuscar);
     if (res.data.result != '0') {
@@ -123,7 +119,6 @@ export default function Receber({ navigation }) {
       ],
       { cancelable: true }
     );
-
   }
 
   async function deletar(id) {
@@ -216,7 +211,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
-
     marginTop: 35
   },
 
@@ -232,4 +226,3 @@ const styles = StyleSheet.create({
 });
 
 const Separator = () => <View style={{ flex: 1, height: 1, backgroundColor: '#DDD' }}></View>
-

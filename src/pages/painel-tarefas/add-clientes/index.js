@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Animated, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as Animatable from 'react-native-animatable';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Axios from 'axios';
 
 export default function addClientes({ navigation }) {
@@ -61,7 +56,6 @@ export default function addClientes({ navigation }) {
     const res = await Axios.post(api + 'addClientes.php', obj);
 
     if (res.data.success === true) {
-      //mensagemSalvar();
       limparDados();
       navigation.navigate('Clientes')
 
